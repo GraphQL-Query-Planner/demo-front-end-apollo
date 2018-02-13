@@ -34,6 +34,7 @@ class Feed extends Component {
     console.log(postsToRender);
     return (
       <div>
+        <h2>Posts</h2>
         { postsToRender.map((post, index) => {
             return (<Post key={index} post={post} />)
           })
