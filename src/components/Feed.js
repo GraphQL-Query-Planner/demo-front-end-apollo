@@ -6,17 +6,6 @@ import gql from 'graphql-tag';
 
 class Feed extends Component {
   render () {
-    // const postsToRender = [
-    //   {
-    //     id: '1',
-    //     author: {
-    //       first_name: 'Bobby',
-    //       last_name: 'Orr'
-    //     },
-    //     body: "He shoots. He scores!"
-    //   }
-    // ];
-
     if (this.props.feedQuery && this.props.feedQuery.loading) {
       return (
         <div>Loading...</div>
