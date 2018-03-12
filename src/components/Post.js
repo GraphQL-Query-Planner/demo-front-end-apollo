@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
+import { Panel } from 'react-bootstrap';
 
 class Post extends Component {
   render () {
-    const style = {
-      border: '1px solid black',
-      backgroundColor: '#fafafa',
-      padding: '10px',
-      margin: '10px',
-    }
-
     const post = this.props.post.node;
     const author = post.author;
 
     return (
-      <div style={style}>
-        <strong>{author.first_name} {author.last_name}</strong>: {post.body}
-      </div>
+      <Panel>
+        <Panel.Heading>{author.first_name} {author.last_name}</Panel.Heading>
+        <Panel.Body>{post.body}</Panel.Body>
+      </Panel>
     );
   }
 }

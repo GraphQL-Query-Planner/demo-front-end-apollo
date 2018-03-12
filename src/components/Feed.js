@@ -6,27 +6,23 @@ import gql from 'graphql-tag';
 
 class Feed extends Component {
   render () {
-    const style = {
-      flex: '7'
-    }
-
     if (this.props.feedQuery && this.props.feedQuery.loading) {
       return (
-        <div style={style}>Loading...</div>
+        <div>Loading...</div>
       );
     }
 
     if (this.props.feedQuery && this.props.feedQuery.error ) {
       console.log(this.props.feedQuery.error);
       return (
-        <div style={style}>Error</div>
+        <div>Error</div>
       );
     }
 
     const postsToRender = this.props.feedQuery.posts.edges
     console.log(postsToRender);
     return (
-      <div style={style}>
+      <div>
         <h2>Posts</h2>
 
         { postsToRender.map((post, index) => {
