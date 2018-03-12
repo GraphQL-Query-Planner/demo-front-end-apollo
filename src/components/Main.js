@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
-import Feed from './Feed';
-import UsersPage from './UsersPage';
+import Feed from './Feed/Feed';
+import UsersPage from './Users/UsersPage';
 import { Grid, Row, Col } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
