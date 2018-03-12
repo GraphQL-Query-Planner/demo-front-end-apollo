@@ -6,7 +6,6 @@ class Main extends Component {
   render () {
     const style = {
       display: 'flex',
-      alignItems: 'center',
       width: '100%'
     }
     return (
