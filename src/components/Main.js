@@ -5,8 +5,7 @@ import UsersPage from './Users/UsersPage';
 import { Grid, Row, Col } from 'react-bootstrap';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 
 class Main extends Component {

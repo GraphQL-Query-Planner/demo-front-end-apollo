@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonGroup, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { ButtonGroup, Button } from 'react-bootstrap';
 
 class Sidebar extends Component {
   render () {
