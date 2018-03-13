@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Comment from './Comment'
+import LikesCounter from './Likes/LikesCounter'
 
 import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -32,7 +33,8 @@ class Post extends Component {
       }}>
         <Panel.Heading>
           <Panel.Title><strong>{author.first_name} {author.last_name}</strong>: {post.body}</Panel.Title>
-          <Panel.Toggle>Toggle comments</Panel.Toggle>
+          <LikesCounter likes={post.likes}/>&nbsp;&nbsp;
+          <Panel.Toggle componentClass="a" className="cursor-pointer">Toggle comments</Panel.Toggle>
         </Panel.Heading>
         <Panel.Collapse>
           <Panel.Body>

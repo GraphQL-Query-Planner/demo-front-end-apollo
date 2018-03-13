@@ -45,6 +45,9 @@ const FEED_QUERY = gql`
             last_name
           }
           body
+          likes {
+            id
+          }
         }
       }
     }
