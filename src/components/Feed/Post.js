@@ -17,13 +17,21 @@ class Post extends Component {
     const post = this.props.post.node;
     const author = post.author;
 
-    const commentsGroup = this.state.comments.map((comment, index) => {
+    const commentsToRender = this.state.comments.map((comment, index) => {
       return (
-        <ListGroupItem key={index}>
-          <Comment comment={comment} />
-        </ListGroupItem>
+        <Comment comment={comment} index={index} />
       )
     })
+    var commentsGroup = null;
+    if(commentsToRender.length > 0) {
+      commentsGroup = (
+        <ListGroup>
+          { commentsToRender }
+        </ListGroup>
+      );
+    } else {
+      commentsGroup = (<Panel.Body>There are no comments yet</Panel.Body>);
+    }
 
     return (
       <Panel defaultExpanded={SHOW_COMMENTS} onToggle={() => {
@@ -33,15 +41,11 @@ class Post extends Component {
       }}>
         <Panel.Heading>
           <Panel.Title><strong>{author.first_name} {author.last_name}</strong>: {post.body}</Panel.Title>
-          <LikesCounter likes={post.likes}/>&nbsp;&nbsp;
+          <LikesCounter likes={post.likes}/>
           <Panel.Toggle componentClass="a" className="cursor-pointer">Toggle comments</Panel.Toggle>
         </Panel.Heading>
         <Panel.Collapse>
-          <Panel.Body>
-            <ListGroup>
-              {commentsGroup.length > 0 ? commentsGroup : 'There are no comments yet'}
-            </ListGroup>
-          </Panel.Body>
+          { commentsGroup }
         </Panel.Collapse>
       </Panel>
     );
@@ -59,7 +63,8 @@ class Post extends Component {
   }
 
   getIdFromGid = (gid) => {
-    return gid[gid.length-1];
+    const splitGid = gid.split("/");
+    return splitGid[splitGid.length-1];
   }
 }
 

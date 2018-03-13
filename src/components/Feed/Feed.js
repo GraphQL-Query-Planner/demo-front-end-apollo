@@ -47,6 +47,11 @@ const FEED_QUERY = gql`
           body
           likes {
             id
+            user {
+              id
+              first_name
+              last_name
+            }
           }
         }
       }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ListGroupItem } from 'react-bootstrap';
 
 class Comment extends Component {
   render () {
@@ -6,7 +7,9 @@ class Comment extends Component {
     const author = comment.author;
 
     return (
-      <div><strong>{author.first_name} {author.last_name}</strong> {comment.body}</div>
+      <ListGroupItem key={this.props.index}>
+        <strong>{author.first_name} {author.last_name}</strong> {comment.body}
+      </ListGroupItem>
     );
   }
 }

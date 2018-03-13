@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, ListGroup } from 'react-bootstrap';
+
+import LikeUser from './LikeUser';
 
 class LikesCounter extends Component {
   constructor(props, context) {
@@ -26,23 +28,36 @@ class LikesCounter extends Component {
     const likesCount = this.props.likes.length;
     const style = { display: 'inline' };
 
+    const likesToRender = this.props.likes.map((like, index) => {
+      return (
+        <LikeUser user={like.user} index={index} />
+      )
+    });
+    var likesGroup = (<ListGroup>{ likesToRender }</ListGroup>);
+    var likesText = null;
+    if (likesCount > 0) {
+      likesText = (
+        <span>
+          <a className="cursor-pointer" onClick={this.handleShow}>
+            {`${likesCount} like${likesCount !== 1 ? 's' : ''}`}
+          </a>
+          &nbsp;&nbsp;
+        </span>
+      );
+    }
+
     return (
       <div style={style}>
-        <a className="cursor-pointer" onClick={this.handleShow}>
-          {`${likesCount} like${likesCount !== 1 ? 's' : ''}`}
-        </a>
-
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Likes</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <p>Here are the likes</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+        { likesText }
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Likes</Modal.Title>
+          </Modal.Header>
+              { likesGroup }
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

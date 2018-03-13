@@ -7,10 +7,10 @@ class Sidebar extends Component {
       <div>
         <h2>Resources</h2>
         <ButtonGroup vertical>
-          <Button bsSize="large" href="users">
+          <Button bsSize="large" href="/users">
             Users
           </Button>
-          <Button bsSize="large" href="posts">
+          <Button bsSize="large" href="/posts">
             Posts
           </Button>
         </ButtonGroup>
