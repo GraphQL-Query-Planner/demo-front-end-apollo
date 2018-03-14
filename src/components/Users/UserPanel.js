@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ListGroupItem } from 'react-bootstrap';
 
-class LikeUser extends Component {
+class UserPanel extends Component {
   render () {
-    const user = this.props.user;
+    const user = this.props.user.node;
 
     return (
       <ListGroupItem href={`/users/${this.getIdFromGid(user.id)}`}>
@@ -18,4 +18,4 @@ class LikeUser extends Component {
   }
 }
 
-export default LikeUser;
+export default UserPanel;

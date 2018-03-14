@@ -7,7 +7,7 @@ class Comment extends Component {
     const author = comment.author;
 
     return (
-      <ListGroupItem key={this.props.index}>
+      <ListGroupItem>
         <strong>{author.first_name} {author.last_name}</strong> {comment.body}
       </ListGroupItem>
     );

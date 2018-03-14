@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import User from './User';
+import UserPanel from './UserPanel';
 
+import { ListGroup } from 'react-bootstrap'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
@@ -24,11 +25,12 @@ class UsersPage extends Component {
     return (
       <div>
         <h2>Users ({usersToRender.length})</h2>
-
-        { usersToRender.map((user, index) => {
-            return (<User key={index} user={user} />)
-          })
-        }
+        <ListGroup>
+          { usersToRender.map((user, index) => {
+              return (<UserPanel key={index} user={user} />)
+            })
+          }
+        </ListGroup>
       </div>
     );
   }
@@ -39,6 +41,7 @@ const USERS_QUERY = gql`
     users {
       edges {
         node {
+          id
           first_name
           last_name
         }

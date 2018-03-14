@@ -19,7 +19,7 @@ class Post extends Component {
 
     const commentsToRender = this.state.comments.map((comment, index) => {
       return (
-        <Comment comment={comment} index={index} />
+        <Comment comment={comment} key={index} />
       )
     })
     var commentsGroup = null;
@@ -40,7 +40,7 @@ class Post extends Component {
         });
       }}>
         <Panel.Heading>
-          <Panel.Title><strong>{author.first_name} {author.last_name}</strong>: {post.body}</Panel.Title>
+          <Panel.Title><strong><a href={`/users/${this.getIdFromGid(author.id)}`}>{author.first_name} {author.last_name}</a></strong>: {post.body}</Panel.Title>
           <LikesCounter likes={post.likes}/>
           <Panel.Toggle componentClass="a" className="cursor-pointer">Toggle comments</Panel.Toggle>
         </Panel.Heading>
@@ -50,7 +50,6 @@ class Post extends Component {
       </Panel>
     );
   }
-
 
   _getComments = async () => {
     const { postId } = this.state;

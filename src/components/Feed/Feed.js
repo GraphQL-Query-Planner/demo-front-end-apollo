@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import Post from './Post';
 
-import { graphql } from 'react-apollo';
+import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class Feed extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      posts: [],
+      receiverId: this.props.receiverId
+    }
+
+    this._getPosts();
+  }
+
   render () {
-    if (this.props.feedQuery && this.props.feedQuery.loading) {
-      return (
-        <div>Loading...</div>
-      );
-    }
-
-    if (this.props.feedQuery && this.props.feedQuery.error ) {
-      console.log(this.props.feedQuery.error);
-      return (
-        <div>Error</div>
-      );
-    }
-
-    const postsToRender = this.props.feedQuery.posts.edges
+    const postsToRender = this.state.posts;
     console.log(postsToRender);
     return (
       <div>
-        <h2>Posts</h2>
-
         { postsToRender.map((post, index) => {
             return (<Post key={index} post={post} />)
           })
@@ -32,15 +28,26 @@ class Feed extends Component {
       </div>
     );
   }
+
+  _getPosts = async () => {
+    const { receiverId } = this.state;
+    const result = await this.props.client.query({
+      query: FEED_QUERY,
+      variables: { receiverId },
+    })
+    const posts = result.data.posts.edges;
+    this.setState({ posts })
+  }
 }
 
 const FEED_QUERY = gql`
-  query FeedQuery {
-    posts(first: 10) {
+  query FeedQuery($receiverId: ID) {
+    posts(first: 10, receiver_id: $receiverId) {
       edges {
         node {
           id
           author {
+            id
             first_name
             last_name
           }
@@ -60,4 +67,4 @@ const FEED_QUERY = gql`
 `
 
 
-export default graphql(FEED_QUERY, { name: 'feedQuery' }) (Feed);
+export default withApollo(Feed);

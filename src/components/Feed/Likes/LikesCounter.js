@@ -30,7 +30,7 @@ class LikesCounter extends Component {
 
     const likesToRender = this.props.likes.map((like, index) => {
       return (
-        <LikeUser user={like.user} index={index} />
+        <LikeUser user={like.user} key={index} />
       )
     });
     var likesGroup = (<ListGroup>{ likesToRender }</ListGroup>);
