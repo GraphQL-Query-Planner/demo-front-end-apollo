@@ -24,7 +24,7 @@ class UsersPage extends Component {
     console.log(usersToRender);
     return (
       <div>
-        <h2>Users ({usersToRender.length})</h2>
+        <h2>Friends ({usersToRender.length})</h2>
         <ListGroup>
           { usersToRender.map((user, index) => {
               return (<UserPanel key={index} user={user} />)

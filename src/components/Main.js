@@ -17,7 +17,7 @@ class Main extends Component {
         <Grid>
           <Row className="show-grid">
             <Col xs={6} md={3}>
-              <Sidebar />
+              <Route component={Sidebar} />
             </Col>
             <Col xs={12} md={9}>
               <Route path="/posts" component={GenericFeed}/>

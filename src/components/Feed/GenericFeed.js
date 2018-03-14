@@ -6,7 +6,7 @@ class GenericFeed extends Component {
   render () {
     return (
       <div>
-        <h2>Posts</h2>
+        <h2>News Feed</h2>
         <Feed />
       </div>
     );
