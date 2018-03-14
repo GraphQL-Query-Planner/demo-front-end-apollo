@@ -41,9 +41,11 @@ class Post extends Component {
       }}>
         <Panel.Heading>
           <Panel.Title><strong><a href={`/users/${this.getIdFromGid(author.id)}`}>{author.first_name} {author.last_name}</a></strong>: {post.body}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Footer>
           <LikesCounter likes={post.likes}/>
           <Panel.Toggle componentClass="a" className="cursor-pointer">Toggle comments</Panel.Toggle>
-        </Panel.Heading>
+        </Panel.Footer>
         <Panel.Collapse>
           { commentsGroup }
         </Panel.Collapse>
