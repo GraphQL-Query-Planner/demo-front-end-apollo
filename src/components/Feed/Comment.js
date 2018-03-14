@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ListGroupItem } from 'react-bootstrap';
 
+import LikesCounter from './Likes/LikesCounter'
+
 class Comment extends Component {
   render () {
     const comment = this.props.comment.node;
@@ -8,7 +10,12 @@ class Comment extends Component {
 
     return (
       <ListGroupItem>
-        <strong>{author.first_name} {author.last_name}</strong> {comment.body}
+        <div>
+          <div>
+            <strong>{author.first_name} {author.last_name}</strong> {comment.body}
+          </div>
+          <LikesCounter likes={comment.likes}/>
+        </div>
       </ListGroupItem>
     );
   }

@@ -78,6 +78,14 @@ const COMMENTS_QUERY = gql`
             last_name
           }
           body
+          likes {
+            id
+            user {
+              id
+              first_name
+              last_name
+            }
+          }
         }
       }
     }
