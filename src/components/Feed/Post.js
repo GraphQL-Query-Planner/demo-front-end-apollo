@@ -16,6 +16,7 @@ class Post extends Component {
     const SHOW_COMMENTS = false;
     const post = this.props.post.node;
     const author = post.author;
+    const commentsCount = post.comments_count;
 
     const commentsToRender = this.state.comments.map((comment, index) => {
       return (
@@ -44,7 +45,7 @@ class Post extends Component {
         </Panel.Heading>
         <Panel.Footer>
           <LikesCounter likes={post.likes}/>
-          <Panel.Toggle componentClass="a" className="cursor-pointer">Toggle comments</Panel.Toggle>
+          <Panel.Toggle componentClass="a" className="cursor-pointer">{`${commentsCount} comment${commentsCount !== 1 ? 's' : ''}`}</Panel.Toggle>
         </Panel.Footer>
         <Panel.Collapse>
           { commentsGroup }
@@ -71,7 +72,7 @@ class Post extends Component {
 
 const COMMENTS_QUERY = gql`
   query CommentsQuery($postId: ID!) {
-    comments(first: 10, content_id: $postId, content_type: "Post") {
+    comments(content_id: $postId, content_type: "Post") {
       edges {
         node {
           id

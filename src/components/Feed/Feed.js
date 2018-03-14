@@ -60,11 +60,11 @@ const FEED_QUERY = gql`
               last_name
             }
           }
+          comments_count
         }
       }
     }
   }
 `
-
 
 export default withApollo(Feed);
