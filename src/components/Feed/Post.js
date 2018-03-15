@@ -18,7 +18,7 @@ class Post extends Component {
 
   render () {
     const SHOW_COMMENTS = false;
-    const post = this.props.post.node;
+    const post = this.props.post;
     const author = post.author;
     const commentsCount = post.comments_count;
 
