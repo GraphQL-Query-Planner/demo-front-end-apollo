@@ -5,7 +5,7 @@ import LikesCounter from './Likes/LikesCounter'
 
 class Comment extends Component {
   render () {
-    const comment = this.props.comment.node;
+    const comment = this.props.comment;
     const author = comment.author;
 
     return (

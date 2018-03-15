@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Panel, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Panel, ListGroup } from 'react-bootstrap';
 import Comment from './Comment'
 import LikesCounter from './Likes/LikesCounter'
 
@@ -7,9 +7,13 @@ import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 
 class Post extends Component {
-  state = {
-    comments: [],
-    postId: 0
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      comments: [],
+      postId: this.props.post.id
+    }
   }
 
   render () {
@@ -60,7 +64,7 @@ class Post extends Component {
       query: COMMENTS_QUERY,
       variables: { postId },
     })
-    const comments = result.data.comments.edges;
+    const comments = result.data.node.comments;
     this.setState({ comments })
   }
 
@@ -72,9 +76,10 @@ class Post extends Component {
 
 const COMMENTS_QUERY = gql`
   query CommentsQuery($postId: ID!) {
-    comments(content_id: $postId, content_type: "Post") {
-      edges {
-        node {
+    node(id: $postId) {
+      id
+      ...on Post {
+        comments {
           id
           author {
             first_name
