@@ -11,7 +11,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const hostname = window && window.location && window.location.hostname;
 var httpLink = null;
-if(hostname === 'graphql-analyzer-demo.herokuapp.com'){
+if(hostname === 'graphql-analyzer-demo-client.herokuapp.com'){
   httpLink = new HttpLink({ uri: 'https://graphql-analyzer-demo.herokuapp.com/graphql'})
 } else {
   httpLink = new HttpLink({ uri: 'http://localhost:3001/graphql' })

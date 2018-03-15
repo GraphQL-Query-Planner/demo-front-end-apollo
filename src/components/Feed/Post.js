@@ -36,7 +36,7 @@ class Post extends Component {
 
     return (
       <Panel defaultExpanded={SHOW_COMMENTS} onToggle={() => {
-        this.setState({ postId: this.getIdFromGid(post.id) }, () => {
+        this.setState({ postId: post.id }, () => {
           this._getComments();
         });
       }}>

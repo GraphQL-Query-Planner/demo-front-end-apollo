@@ -16,11 +16,16 @@ class UserProfile extends Component {
   }
 
   render () {
+    if(this.state.user) {
+      return (
+        <div>
+          <h2>{this.state.user.first_name}'s Wall</h2>
+          <Feed receiverId={`gid://webscale/User/${this.props.match.params.id}`} />
+        </div>
+      );
+    }
     return (
-      <div>
-        <h2>{this.state.user.first_name}'s Wall</h2>
-        <Feed receiverId={this.getIdFromGid(this.props.match.params.id)} />
-      </div>
+      <div>The user does not exist</div>
     );
   }
 
@@ -32,12 +37,6 @@ class UserProfile extends Component {
     })
     const user = result.data.node;
     this.setState({ user })
-  }
-
-
-  getIdFromGid = (gid) => {
-    const splitGid = gid.split("/");
-    return splitGid[splitGid.length-1];
   }
 }
 
@@ -51,6 +50,5 @@ query UserQuery($id: ID!) {
   }
 }
 `
-
 
 export default withApollo(UserProfile);
